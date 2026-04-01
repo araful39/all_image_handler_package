@@ -132,7 +132,7 @@ class _AllImageState extends State<AllImage> {
           if (wasSynchronouslyLoaded || frame != null) return child;
           return _buildPlaceholder();
         },
-        errorBuilder: (_, _, _) => _buildError(),
+        errorBuilder: (context, error, stackTrace) => _buildError(),
       );
     }
 
@@ -145,8 +145,8 @@ class _AllImageState extends State<AllImage> {
       memCacheWidth: widget.options.memCacheWidth,
       memCacheHeight: widget.options.memCacheHeight,
       fadeInDuration: widget.options.fadeInDuration,
-      placeholder: (_, _) => _buildPlaceholder(),
-      errorWidget: (_, _, _) => _buildError(),
+      placeholder: (context, url) => _buildPlaceholder(),
+      errorWidget: (context, url, error) => _buildError(),
     );
   }
 
@@ -176,7 +176,7 @@ class _AllImageState extends State<AllImage> {
       filterQuality: widget.options.filterQuality,
       cacheWidth: widget.options.memCacheWidth,
       cacheHeight: widget.options.memCacheHeight,
-      errorBuilder: (_, _, _) => _buildError(),
+      errorBuilder: (context, error, stackTrace) => _buildError(),
     );
   }
 
@@ -184,9 +184,8 @@ class _AllImageState extends State<AllImage> {
     final path = widget.path;
     if (path == null || path.trim().isEmpty) return _buildError();
 
-    final normalizedPath = path.startsWith('file://')
-        ? path.replaceFirst('file://', '')
-        : path;
+    final normalizedPath =
+        path.startsWith('file://') ? path.replaceFirst('file://', '') : path;
     final file = File(normalizedPath);
 
     if (AllImageUtils.isSvg(path)) {
@@ -211,7 +210,7 @@ class _AllImageState extends State<AllImage> {
       filterQuality: widget.options.filterQuality,
       cacheWidth: widget.options.memCacheWidth,
       cacheHeight: widget.options.memCacheHeight,
-      errorBuilder: (_, _, _) => _buildError(),
+      errorBuilder: (context, error, stackTrace) => _buildError(),
     );
   }
 
@@ -241,7 +240,7 @@ class _AllImageState extends State<AllImage> {
       filterQuality: widget.options.filterQuality,
       cacheWidth: widget.options.memCacheWidth,
       cacheHeight: widget.options.memCacheHeight,
-      errorBuilder: (_, _, _) => _buildError(),
+      errorBuilder: (context, error, stackTrace) => _buildError(),
     );
   }
 
