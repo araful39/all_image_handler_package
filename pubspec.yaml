@@ -1,7 +1,11 @@
 name: all_image_handler
 description: "A new Flutter package project."
 version: 0.0.1
-homepage:
+
+homepage: https://github.com/araful39/all_image_handler_package
+repository: https://github.com/araful39/all_image_handler_package
+issue_tracker: https://github.com/araful39/all_image_handler_package/issues
+
 
 environment:
   sdk: ^3.11.0
