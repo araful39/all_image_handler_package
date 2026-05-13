@@ -1,20 +1,20 @@
 class AllImageUtils {
-  static bool isNetwork(String? path) {
-    if (path == null || path.trim().isEmpty) return false;
-    final lower = path.toLowerCase();
+  static bool isNetwork(String? url) {
+    if (url == null || url.trim().isEmpty) return false;
+    final lower = url.toLowerCase();
     return lower.startsWith('http://') || lower.startsWith('https://');
   }
 
-  static bool isFile(String? path) {
-    if (path == null || path.trim().isEmpty) return false;
-    return path.startsWith('/') ||
-        path.startsWith('file://') ||
-        path.contains('/storage/') ||
-        path.contains(r'\');
+  static bool isFile(String? url) {
+    if (url == null || url.trim().isEmpty) return false;
+    return url.startsWith('/') ||
+        url.startsWith('file://') ||
+        url.contains('/storage/') ||
+        url.contains(r'\');
   }
 
-  static bool isSvg(String? path) {
-    if (path == null || path.trim().isEmpty) return false;
-    return path.toLowerCase().split('?').first.endsWith('.svg');
+  static bool isSvg(String? url) {
+    if (url == null || url.trim().isEmpty) return false;
+    return url.toLowerCase().split('?').first.endsWith('.svg');
   }
 }

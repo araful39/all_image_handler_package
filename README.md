@@ -1,19 +1,22 @@
-# all_image_handler
+# 🖼️ All Image Handler
 
-A smart Flutter image handler package that automatically detects image sources (network, asset, file, memory) and displays them with advanced features like caching, shimmer loading, retry support, and hero animations.
+[![Pub Version](https://img.shields.io/pub/v/all_image_handler)](https://pub.dev/packages/all_image_handler)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+The ultimate Flutter image utility for 2026. **All Image Handler** is a zero-configuration, high-performance widget that automatically detects and renders images from any source. Whether it's a URL, a local asset, a file, or raw memory bytes, this package handles it with ease.
 
 ---
 
 ## ✨ Features
 
-* 🔍 Automatic image source detection (Network / Asset / File / Memory)
-* ⚡ Fast loading with caching support
-* ✨ Shimmer loading effect
-* 🔁 Retry button on load failure
-* 🧱 Custom error widget support
-* 🦸 Hero animation support
-* 🎯 Clean and simple API
-* 📱 Works on Android, iOS, Web, Windows, macOS, Linux
+*   🔍 **Smart Auto-Detection**: One property (`url`) to rule them all. Handles Network, Asset, File, and SVG automatically.
+*   🚀 **Performance Optimized**: Built-in caching, memory-aware rendering, and BlurHash support.
+*   🌍 **Global Config**: Set app-wide defaults (like borderRadius or shimmer colors) in your `main.dart`.
+*   🎨 **Premium Styling**: Direct support for `borderRadius`, `border`, `boxShadow`, `opacity`, `margin`, and `padding`.
+*   👆 **Full Interactivity**: Built-in `onTap`, `onLongPress`, and `enableInteractiveViewer` (zoom/pan).
+*   🪄 **Modern UI**: Theme-aware shimmers (Light/Dark mode) and smooth Hero transitions.
+*   🛠️ **Advanced Control**: Manual reload/retry via `AllImageController`.
+*   📦 **SVG Ready**: First-class SVG support with network/asset loading and color tinting.
 
 ---
 
@@ -23,157 +26,111 @@ Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  all_image_handler: ^0.0.1
-```
-
-Then run:
-
-```bash
-flutter pub get
+  all_image_handler: ^0.1.0
 ```
 
 ---
 
-## 📦 Import
+## 🌍 Global Configuration
+
+Standardize your app's look by setting global defaults once.
 
 ```dart
-import 'package:all_image_handler/all_image_handler.dart';
+void main() {
+  AllImageConfig.setGlobalOptions(const AllImageOptions(
+    borderRadius: BorderRadius.circular(12),
+    showShimmer: true,
+    fit: BoxFit.cover,
+    fadeInDuration: Duration(milliseconds: 300),
+  ));
+  
+  runApp(const MyApp());
+}
 ```
 
 ---
 
-## 🖼️ Basic Usage
+## 🖼️ Usage Examples
+
+### 1. Basic Usage
+The handler automatically knows if it's a URL, Asset, or File.
 
 ```dart
-AllImage(
-  image: 'https://example.com/image.jpg',
+// Network Image
+AllImageHandler(url: 'https://picsum.photos/500/300')
+
+// Local Asset
+AllImageHandler(url: 'assets/images/logo.png')
+
+// Local File
+AllImageHandler(url: '/path/to/image.jpg')
+```
+
+### 2. Styling & Interactivity
+Create premium UI elements with minimal code.
+
+```dart
+AllImageHandler(
+  url: 'https://picsum.photos/400',
+  size: 200,
+  borderRadius: BorderRadius.circular(24),
+  border: Border.all(color: Colors.blue, width: 2),
+  boxShadow: [
+    BoxShadow(color: Colors.black26, blurRadius: 10, offset: Offset(0, 4))
+  ],
+  onTap: () => print('User clicked the image!'),
+  enableInteractiveViewer: true, // Allow zooming and panning
+)
+```
+
+### 3. Circular Profile & SVGs
+Perfect for user avatars and icons.
+
+```dart
+// Circular Avatar
+AllImageHandler(
+  url: 'https://i.pravatar.cc/300',
+  size: 80,
+  shape: BoxShape.circle,
+)
+
+// Tinted SVG Icon
+AllImageHandler(
+  url: 'assets/icons/settings.svg',
+  color: Colors.deepPurple,
+  size: 32,
 )
 ```
 
 ---
 
-## 🧠 Auto Detection
+## ⚙️ Property Overview
 
-No need to specify image type 👇
-
-```dart
-AllImage(image: 'https://example.com/image.jpg'); // Network
-AllImage(image: 'assets/images/logo.png'); // Asset
-AllImage(image: file.path); // File
-AllImage(image: memoryBytes); // Memory
-```
-
----
-
-## 🎨 Advanced Usage
-
-```dart
-AllImage(
-  image: 'https://example.com/image.jpg',
-  width: 200,
-  height: 200,
-  fit: BoxFit.cover,
-
-  showShimmer: true,
-  enableCache: true,
-
-  heroTag: 'imageHero',
-
-  errorWidget: Icon(Icons.error),
-)
-```
-
----
-
-## 🔁 Retry on Error
-
-```dart
-AllImage(
-  image: 'https://wrong-url.com/image.jpg',
-  showRetry: true,
-)
-```
-
----
-
-## ✨ Shimmer Loading
-
-```dart
-AllImage(
-  image: 'https://example.com/image.jpg',
-  showShimmer: true,
-)
-```
-
----
-
-## 🦸 Hero Animation
-
-```dart
-AllImage(
-  image: 'https://example.com/image.jpg',
-  heroTag: 'myImage',
-)
-```
-
----
-
-## ⚙️ Options Overview
-
-| Property    | Type    | Description                       |
-| ----------- | ------- | --------------------------------- |
-| image       | dynamic | Image source (auto-detected)      |
-| width       | double  | Width of image                    |
-| height      | double  | Height of image                   |
-| fit         | BoxFit  | Image fit                         |
-| showShimmer | bool    | Show shimmer while loading        |
-| enableCache | bool    | Enable caching for network images |
-| showRetry   | bool    | Show retry button on error        |
-| errorWidget | Widget  | Custom error widget               |
-| heroTag     | String  | Enable hero animation             |
-
----
-
-## 📸 Screenshots
-
-> ![alt text](image.png)
-
----
-
-## 🧪 Example
-
-Check the `/example` folder for a complete working demo.
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome!
-Feel free to open issues or submit pull requests.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
+| Property | Type | Description |
+| :--- | :--- | :--- |
+| `url` | `String?` | The source (URL, Asset path, or File path). |
+| `size` | `double?` | Sets both width and height. |
+| `borderRadius` | `BorderRadius?` | Corners rounding (Rectangle shape only). |
+| `shape` | `BoxShape` | `rectangle` or `circle`. |
+| `fit` | `BoxFit` | How to scale the image. |
+| `color` | `Color?` | Apply a tint color to the image/SVG. |
+| `enableInteractiveViewer` | `bool` | Enables zoom and pan functionality. |
+| `onTap` | `VoidCallback?` | Interaction callback. |
+| `blurHash` | `String?` | BlurHash string for smooth loading. |
+| `showShimmer` | `bool` | Toggle the shimmer effect. |
+| `controller` | `AllImageController?` | Manual reload/retry control. |
 
 ---
 
 ## 👨‍💻 Author
 
 **Md Araful Islam**  
-Flutter Developer with 2+ years of experience in building scalable mobile applications, real-time features, and production-ready apps for App Store & Play Store.
+*Flutter Specialist & Mobile Architect*
 
-🔗 LinkedIn: https://linkedin.com/in/your-profile
-📧 Email: rajuslam39@gmail.com  
-🌐 Portfolio: https://araful39.netlify.app/  
-💻 GitHub: https://github.com/araful39  
+🔗 [GitHub](https://github.com/araful39)  
+📧 [Email](mailto:rajuslam39@gmail.com)
 
 ---
-
 
 ## ⭐ Support
-
-If you like this package, please ⭐ star the repo and share it with others!
-
----
+If this package saved you time, please give it a **Star** on GitHub!

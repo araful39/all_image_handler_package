@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// A controller used to manage and reload an [AllImage] widget.
+/// A controller used to manage and reload an [AllImageHandler] widget.
 class AllImageController extends ChangeNotifier {
   int _reloadKey = 0;
 

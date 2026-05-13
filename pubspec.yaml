@@ -1,6 +1,6 @@
 name: all_image_handler
-description: A Flutter package that automatically detects and renders images from network, asset, file, memory, SVG, and BlurHash with caching, shimmer loading, retry, error handling, and hero animation support.
-version: 0.0.1
+description: The ultimate Flutter image handler. Smart auto-detection (Network, Asset, File, Memory, SVG) with built-in caching, BlurHash, theme-aware shimmer, interactivity (zoom/tap), and premium styling.
+version: 0.1.0
 
 homepage: https://github.com/araful39/all_image_handler_package
 repository: https://github.com/araful39/all_image_handler_package
@@ -22,12 +22,12 @@ dependencies:
     sdk: flutter
   cached_network_image: ^3.4.1
   flutter_blurhash: ^0.9.1
-  flutter_svg: ^2.2.4
+  flutter_svg: ^2.3.0
   shimmer: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^6.0.0
+  flutter_lints: ^3.0.0
 
 flutter:
